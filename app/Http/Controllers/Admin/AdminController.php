@@ -10,9 +10,6 @@ class AdminController extends Controller
     public function index(){
         return view('admin.index');
     }
-    public function user(){
-        return view('admin.user');
-    }
     public function archivos(){
         return view('admin.archivos');
     }
@@ -21,5 +18,14 @@ class AdminController extends Controller
     }
     public function graficas(){
         return view('admin.graficas');
+    }
+    public function editUser(){
+        return view('admin.editUser');
+    }
+    public function datosTabla(){
+        return view('admin.datosTabla');
+    }
+    public function hoteles(){
+        return view('admin.hoteles');
     }
 }

@@ -1,3 +1,12 @@
+@extends('adminlte::page')
+
+@section('title', 'Administración')
+
+@section('content_header')
+    <h1>Métricas</h1>
+@stop
+
+@section('content')
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -41,3 +50,13 @@
         </div>
     </div>
 </x-app-layout>
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Internas\InternasController;
-use App\Http\Controllers\ArchivoController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +25,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/add-archivo',[ArchivoController::class,'addArchivo']);
-Route::get('/export-excel',[ArchivoController::class,'exportIntoExcel']);
-Route::get('/export-csv',[ArchivoController::class,'exportIntoCSV']);
 
-Route::get('/import-form',[ArchivoController::class,'importForm']);
 
-Route::post('/import',[ArchivoController::class,'import'])->name('employee.import');

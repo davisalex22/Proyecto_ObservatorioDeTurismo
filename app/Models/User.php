@@ -20,13 +20,15 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    protected $table = "users";
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id','name', 'email','rol', 'password',
     ];
 
     /**
@@ -61,6 +63,11 @@ class User extends Authenticatable
 
     public function adminlte_profile_url()
     {
-        return 'profile/username';
+        return '/user/profile';
+    }
+
+    public function adminlte_desc()
+    {
+        return 'Administrador';
     }
 }

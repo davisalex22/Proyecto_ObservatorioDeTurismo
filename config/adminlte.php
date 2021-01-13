@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Observatorio</b>UTPL',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logoObservatorio.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -68,7 +68,7 @@ return [
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => true,
 
     /*
@@ -227,7 +227,7 @@ return [
         [
             'text'        => 'Administración',
             'url'         => 'admin',
-            'icon'        => 'fas fa-fw fa-home',
+            'icon'        => 'fas fa-user-cog',
             'topnav' => true,
             
         ],
@@ -248,96 +248,68 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],     
-        ['header' => 'MENU PRINCIPAL'],  
+        ['header' => 'MENÚ PRINCIPAL'],  
         [
             'text'        => 'Usuarios',
-            'url'         => 'admin/user',
-            'icon'        => 'far fa-fw fa-file',            
+            'url'         => 'admin/users',
+            'icon'        => 'fas fa-users',            
             'label_color' => 'success',
         ],
         [
             'text'        => 'Carga de Archivos',
             'url'         => 'admin/archivos',
-            'icon'        => 'far fa-fw fa-file',     
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Configuración de Métricas',
-            'url'         => 'admin/metricas',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-folder-plus',     
             'label_color' => 'success',
         ],
         [
             'text'        => 'Configuración de Gráficas',
             'url'         => 'admin/graficas',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-chart-pie',
             'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
+        ], 
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Datos en Tabla',
+            'icon'        => 'fas fa-table',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Datos Generales',
+                    'url'  => 'admin/datosTabla',
+                    'icon' => 'fas fa-table',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
+                    'text'        => 'Hoteles',
+                    'url'         => 'admin/hoteles',
+                    'icon' => 'far fa-file-alt',                  
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Página Lugares Turísticos',
                     'url'  => '#',
+                    'icon' => 'far fa-file-alt',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ], 
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+            'text'    => 'Edición de Contenido',
+            'icon'    => 'fas fa-edit',
+            'submenu' => [
+                [
+                    'text' => 'Página Principal',
+                    'url'  => '#',
+                    'icon' => 'far fa-file-alt',
+                ],
+                [
+                    'text'    => 'Página de Estadísticas',
+                    'url'     => '#',  
+                    'icon' => 'far fa-file-alt',                  
+                ],
+                [
+                    'text' => 'Página Lugares Turísticos',
+                    'url'  => '#',
+                    'icon' => 'far fa-file-alt',
+                ],
+            ],
+        ], 
+        
     ],
 
     /*

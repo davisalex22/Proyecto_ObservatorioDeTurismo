@@ -7,170 +7,50 @@
 @stop
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-      <div class="card card-default">
-        <div class="card-header">
-          <h3 class="card-title">Carga de Archivos</h3>
-        </div>
-        <div class="card-body">
-          <div id="actions" class="row">
-            <div class="col-lg-6">
-              <div class="btn-group w-100">
-                <span class="btn btn-success col fileinput-button">
-                  <i class="fas fa-plus"></i>
-                  <span>Add files</span>
-                </span>
-                <button type="submit" class="btn btn-primary col start">
-                  <i class="fas fa-upload"></i>
-                  <span>Start upload</span>
-                </button>
-                <button type="reset" class="btn btn-warning col cancel">
-                  <i class="fas fa-times-circle"></i>
-                  <span>Cancel upload</span>
-                </button>
-              </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center">
-              <div class="fileupload-process w-100">
-                <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                  <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="table table-striped files" id="previews">
-            <div id="template" class="row mt-2">
-              <div class="col-auto">
-                  <span class="preview"><img src="data:," alt="" data-dz-thumbnail /></span>
-              </div>
-              <div class="col d-flex align-items-center">
-                  <p class="mb-0">
-                    <span class="lead" data-dz-name></span>
-                    (<span data-dz-size></span>)
-                  </p>
-                  <strong class="error text-danger" data-dz-errormessage></strong>
-              </div>
-              <div class="col-4 d-flex align-items-center">
-                  <div class="progress progress-striped active w-100" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+<section style = "padding-top:60px;">
+  <div class="container">
+      <div class="row">
+          <div class = "col-md-6 offset-md-3">
+              <div class="card">
+                  <div class="card-header">
+                      Import
+                  </div>
+                  <div class="card-body">
+                      <form method="POST" enctype = "multipart/form-data" action="{{route('archivo.store')}}">
+                          @csrf                          
+                          <div class="form-group">
+                              <label for="title">Choose CSV</label>
+                              <input type="file" name="file" class="form-control"/>
+                          </div>
+                          <button type="submit" class = "btn btn-primary">Submit</button>
+                      </form>
                   </div>
               </div>
-              <div class="col-auto d-flex align-items-center">
-                <div class="btn-group">
-                  <button class="btn btn-primary start">
-                    <i class="fas fa-upload"></i>
-                    <span>Start</span>
-                  </button>
-                  <button data-dz-remove class="btn btn-warning cancel">
-                    <i class="fas fa-times-circle"></i>
-                    <span>Cancel</span>
-                  </button>
-                  <button data-dz-remove class="btn btn-danger delete">
-                    <i class="fas fa-trash"></i>
-                    <span>Delete</span>
-                  </button>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-       
       </div>
-      <!-- /.card -->
+  </div>
+</section> 
+<div class ="container">
+  <div class = "row justify-content-center">
+    <div class = "col-md-8">
+      <div class = "card">
+        <div class = "card-header">{{__('Subir archivos' )}}</div>
+        <div class = "card_body">
+          @if (session('status'))
+          <div class = "alert alert-success" role = "alert">
+            {{session('status')}}
+          </div>
+          @endif
+          <form method="POST" action= "{{route('files.store') }}" enctype ="multipart/form-data">
+          @csrf
+          <input type="file" class="form-control" name="files[]" multiple>
+          <button class type="submit" class = "mt-4 btn btn-primary float-right">Subir</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- /.row -->
-  </div>
-  <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
-  </div> 
-      <div class="col-md-8" style = "float: none; margin: 0 auto;">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Historial de Archivos</h3>
-            <div class="card-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                  <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                      <i class="fas fa-search"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th style="width: 10px">ID</th>
-                  <th>NOMBRE ARCHIVO</th>
-                  <th>FECHA</th>
-                  <th style="width: 50px">OPCIONES</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1.</td>
-                  <td>Update software</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                    </div>
-                  </td>
-                  <td><button type="button" class="btn btn-block btn-success btn-sm">Descargar</button></td>
-                </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Clean database</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar bg-warning" style="width: 70%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-warning">70%</span></td>
-                </tr>
-                <tr>
-                  <td>3.</td>
-                  <td>Cron job running</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar bg-primary" style="width: 30%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-primary">30%</span></td>
-                </tr>
-                <tr>
-                  <td>4.</td>
-                  <td>Fix and squish bugs</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar bg-success" style="width: 90%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-success">90%</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer clearfix">
-            <ul class="pagination pagination-sm m-0 float-right">
-              <li class="page-item"><a class="page-link" href="#">«</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">»</a></li>
-            </ul>
-          </div>
-        </div>
-        <!-- /.card -->
-
-      </div>
+</div>
 @stop
 
 @section('css')
