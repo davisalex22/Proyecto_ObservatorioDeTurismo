@@ -7,86 +7,63 @@
 @stop
 
 @section('content')
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Usuarios</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6"></div>
-                                <div class="col-sm-12 col-md-6"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline"
-                                        role="grid" aria-describedby="example2_info">
-                                        <thead>
-                                            <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example2"
-                                                rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Rendering engine: activate to sort column descending">
-                                                ID</th>
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example2"
-                                                    rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Rendering engine: activate to sort column descending">
-                                                    Nombre</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                                    colspan="1" aria-label="Browser: activate to sort column ascending">
-                                                    Correo electrónico</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="">Rol</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Engine version: activate to sort column ascending"
-                                                    style="">Hotel</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending" style="">
-                                                    Opciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($users as $user)
-                                            <tr>    
-                                                <td>{{$user->id}}</td>       
-                                                <td>{{$user->name}}</td>
-                                                <td>{{$user->email}}</td>
-                                                <td>{{$user->rol}}</td>
-                                                <td>{{$user->Num}}</td>
-                                                <td>
-                                                    <form action="{{route ('users.destroy',$user->id)}}" method="POST">
-                                                        <a href="/admin/users/{{$user->id}}/edit" class ="btn btn-info">Editar</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class ="btn btn-danger">Borrar</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
+<a href="users/create" class = "btn btn-primary">Crear</a>
+
+<table class = "table table-dark table-striped mt-4">
+    <thead>
+        <tr>
+            <th scope ="col">ID</th>
+            <th scope ="col">Nombre</th>
+            <th scope ="col">Correo</th>
+            <th scope ="col">Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($users as $user)
+        <tr>
+            <td>{{$user ->id}}</td>
+            <td>{{$user ->name}}</td>
+            <td>{{$user ->email}}</td>
+            <td>{{$user ->rol}}</td>
+            <td>
+              <form action="{{route('users.destroy',$user->id)}}" method = "POST">
+                <a href ="/admin/users/{{$user ->id}}/edit" class = "btn btn-info" >Editar</a>
+                @csrf
+                @method('DELETE')
+                <button type = "submit" class = "btn btn-danger">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+
+</table>
+
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-    <!-- /.container-fluid -->
-</section>
+  </div>
+</div>
 
 @stop
 

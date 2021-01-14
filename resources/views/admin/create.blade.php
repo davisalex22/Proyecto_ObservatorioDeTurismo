@@ -3,27 +3,29 @@
 @section('title', 'Administración')
 
 @section('content_header')
+    <h1>Administración de Usuarios</h1>
 @stop
 
 @section('content')
-<form action="/admin/users/{{$user->id}}" method = "POST">
+<h2>Crear registro</h2>
+
+<form action="/admin/users" method = "POST">
     @csrf
-    @method('PUT')
     <div class = "mb-3">
         <label for="" class = "form-label">Nombre</label>
-        <input id = "name" name = "name"  type="text" class ="form-control" value ="{{$user->name}}">
+        <input id = "name" name = "name"  type="text" class ="form-control" tabindex = "2">
     </div>
     <div class = "mb-3">
         <label for="" class = "form-label">Correo</label>
-        <input id = "email" name = "email"  type="text" class ="form-control" value ="{{$user->email}}">
+        <input id = "email" name = "email"  type="email" class ="form-control" tabindex = "3">
     </div>
     <div class = "mb-3">
         <label for="" class = "form-label">Rol</label>
-        <input id = "rol" name = "rol"  type="text" class ="form-control" value ="{{$user->rol}}">
+        <input id = "rol" name = "rol"  type="text" class ="form-control" tabindex = "4">
     </div>
     <div class = "mb-3">
         <label for="" class = "form-label">Contraseña</label>
-        <input id = "password" name = "password"  type="text" class ="form-control" value ="{{$user->password}}">
+        <input id = "password" name = "password"  type="password" class ="form-control" tabindex = "4">
     </div>
 
 
@@ -32,12 +34,6 @@
     <button type = "submit" class ="btn btn-primary" tabindex = "4">Guardar</button>
 
 </form>
-@stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+@endsection

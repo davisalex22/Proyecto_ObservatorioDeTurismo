@@ -21,6 +21,9 @@ Route::get('/estadisticas',[InternasController::class,'estadisticas']);
 Route::get('/lugares',[InternasController::class,'lugares']);
 Route::get('/contactos',[InternasController::class,'contactos']);
 
+
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

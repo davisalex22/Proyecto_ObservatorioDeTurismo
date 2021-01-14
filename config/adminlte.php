@@ -232,16 +232,11 @@ return [
             
         ],
         [
-            'text'        => 'Home',
+            'text'        => 'Página Principal',
             'url'         => '/',
             'icon'        => 'fas fa-fw fa-home',
             'topnav' => true,
             
-        ],
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
         ],
         [
             'text' => 'blog',
@@ -274,18 +269,13 @@ return [
                 [
                     'text' => 'Datos Generales',
                     'url'  => 'admin/datosTabla',
-                    'icon' => 'fas fa-table',
+                    'icon' => 'fas fa-receipt',
                 ],
                 [
                     'text'        => 'Hoteles',
                     'url'         => 'admin/hoteles',
-                    'icon' => 'far fa-file-alt',                  
-                ],
-                [
-                    'text' => 'Página Lugares Turísticos',
-                    'url'  => '#',
-                    'icon' => 'far fa-file-alt',
-                ],
+                    'icon' => 'fas fa-hotel',                  
+                ],                
             ],
         ], 
         [

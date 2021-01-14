@@ -17,9 +17,10 @@ Route::get('/hoteles',[AdminController::class,'hoteles']);
 // Importacion de Archivos
 
 Route::resource('datosTabla', 'App\Http\Controllers\HistorialController');
+Route::resource('hoteles', 'App\Http\Controllers\HotelesController');
 
 Route::post('/admin/archivos',[FilesController::class,'import'])->name('archivo.store');
 // Store de Archivos
-Route::post('/upload',[FilesController::class,'store'])->name('admin.store');
+Route::post('/upload',[FilesController::class,'store'])->name('user.files.store');
 
 Route::resource('files','App\Http\Controllers\FilesController');

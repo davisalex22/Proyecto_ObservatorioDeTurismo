@@ -20,7 +20,7 @@ class FilesController extends Controller
     public function index()
     {
         $files = File::all();        
-        // return view('admin.Archivos')->with('files',$files);
+      //  return view('admin.Archivos')->with('files',$files);
         return view('admin.archivos', compact('files'));
     }
 
