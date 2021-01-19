@@ -132,10 +132,11 @@
                                     <label>Selecciona Hotel</label>
                                     <select class="form-control" id="sel1">
                                         <option selected>Selecciona un Hotel</option>
-                                        <option>Gráfica de Barras</option>
-                                        <option>Gráfica de Líneas</option>
-                                        <option>Gráfica de Pastel</option>
-                                        <option>Gráfica de Dispersión</option>
+                                        <option>Sonesta Hotel</option>
+                                        <option>Hotel Victoria</option>
+                                        <option>Sonesta Hotel</option>
+                                        <option>Hotel Victoria</option>
+                                     
                                     </select>
                                 </div>
                             </div>
@@ -144,10 +145,10 @@
                                     <label>Selecciona Gráfica</label>
                                     <select class="form-control" id="sel1">
                                         <option selected>Selecciona Gráfica</option>
-                                        <option>Sonesta Hotel</option>
-                                        <option>Hotel Victoria</option>
-                                        <option>Sonesta Hotel</option>
-                                        <option>Hotel Victoria</option>
+                                        <option>Gráfica de Barras</option>
+                                        <option>Gráfica de Líneas</option>
+                                        <option>Gráfica de Pastel</option>
+                                        <option>Gráfica de Dispersión</option>
                                     </select>
                                 </div>
                             </div>
@@ -167,14 +168,20 @@
                         <h3 class="card-title">Gráfica</h3>
                     </div>                   
                     <div class="card-body">  
-                        <canvas id="myChart" width="400" height="100" aria-label="Hello ARIA World" role="img"></canvas>    
-                                    
+                        <div class="row col-12">
+                            <canvas id="myChart" width="400" height="400"></canvas>   
+                        </div>
+                                           
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<form action="/admin/graficas/all" action="POST" id="form1">
+    @csrf
+
+</form>
 
 @stop
 
@@ -186,6 +193,8 @@
 @stop
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
@@ -197,44 +206,71 @@
     //Date range picker
       $('#reservation').daterangepicker()    
  </script>
-
 <script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
+    var graficas =[];
+    var valores=[];
+    $(document).ready(function(){
+        $.ajax({
+            url: '/admin/graficas/all',
+            method: 'POST',
+            data:{
+                id:1,
+                _token: $('input[name="_token"]').val()
+            }
+        }).done(function(res){
+            var arreglo = JSON.parse(res);
+            console.log(arreglo);
+            for(var x=0;x<arreglo.length;x++){           
+                    graficas.push(arreglo[x].fecha);
+                    valores.push(arreglo[x].checkins);
+                    generarGrafica();
+            }
+            
+        });
+        
+    });
+    function generarGrafica(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: graficas,
+                    datasets: [{
+                        label: 'Checkins',
+                        data: valores,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
                 }
-            }]
-        }
+            });
     }
-});
 </script>
+<script>
+
+    </script>
 @stop
+

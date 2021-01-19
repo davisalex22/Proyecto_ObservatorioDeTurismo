@@ -13,13 +13,13 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-header">
-                            Import
+                            Carga de archivos
                         </div>
                         <div class="card-body">
-                            <form method="POST" enctype="multipart/form-data" action="{{ route('archivo.store') }}">
+                            <form method="POST" enctype="multipart/form-data" action="{{ route('archivo.import') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="title">Choose CSV</label>
+                                    <label for="title">Seleccione un archivo</label>
                                     <input type="file" name="file" class="form-control" />
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -30,56 +30,49 @@
             </div>
         </div>
     </section>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Subir archivos') }}</div>
-                    <div class="card_body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <form method="POST" action="{{ route('user.files.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <input type="file" class="form-control" name="files[]" multiple>
-                            <button class type="submit" class="mt-4 btn btn-primary float-right">Subir</button>
-                        </form>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Registros de archivos</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped " id="archivos" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">id</th>
+                                        <th scope="col">Nombre del archivo</th>
+                                        <th scope="col">Fecha de subida</th>
+                                        <th scope="col">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($files as $file)
+                                        <tr>
+                                            <th scope="row">{{ $file->id }}</th>
+                                            <td>{{ $file->name }}</td>
+                                            <td>{{ $file->created_at }}</td>
+                                            <td>
+                                                <form action="{{ route('archivos.destroy', $file->id) }}" method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    <a target="_blanck" href="../storage/{{ $file->name }}"
+                                                        class="btn btn-info">Descargar</a>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <section>
-      <div class ="container">
-        <div class = "row justify-content-center">
-          <div class = "col-md-8">
-            <div class = "card">
-              <div class = "card-header">{{__('Mis archivos' )}}</div>
-              <div class = "card_body">
-              <div class="table-responsive">
-                <table class="table">
-                <thead>
-                  <tr>
-                      <th scope="col">id</th>
-                      <th scope="col">Nombre del archivo</th>
-                      <th scope="col">Fecha de subida</th>
-                      <th scope="col">Ver</th>
-                      <th scope="col">Eliminar</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-                </table>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>       
+    </section>   
 @stop
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -102,7 +95,7 @@
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#hoteles').DataTable({
+            $('#archivos').DataTable({
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",

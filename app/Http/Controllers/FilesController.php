@@ -7,9 +7,6 @@ use App\Models\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
-use Excel;
-use App\Imports\ArchivoImport;
-
 class FilesController extends Controller
 {
     /**
@@ -20,7 +17,7 @@ class FilesController extends Controller
     public function index()
     {
         $files = File::all();        
-      //  return view('admin.Archivos')->with('files',$files);
+        // return view('admin.Archivos')->with('files',$files);
         return view('admin.archivos', compact('files'));
     }
 
@@ -41,73 +38,68 @@ class FilesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-     {
-          // Metodo para limitar el tamaño de los archivos a cargar
-          $max_size = (int)ini_get('upload_max_filesize') *10240;
+    {
+         // Metodo para limitar el tamaño de los archivos a cargar
+         $max_size = (int)ini_get('upload_max_filesize') *10240;
 
-          $files = $request->file('files');
+         $files = $request->file('files');
          
-          if($request->hasFile('files')){
-              foreach ($files as $file){
-                  $fileName = Str::slug($file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
-                  if(Storage::putFileAs('/public/',$file, $fileName)){
-                      File::create([
-                          'name' => $fileName
-                      ]);
-                  }   
-              }
-              return "Si hay archivos";
-          }else{
-              return "No se han subido archivos";
-          }         
-          // Alert::success('Exito', 'Se a subido el archivo');
-     }
-     public function import(Request $request){
-            
-        Excel::import(new ArchivoImport,$request->file);      
-        echo '<script language="javascript">alert("Archivo Cargado Correctamente");</script>';       
-        return view("/admin/archivos") ;
+         if($request->hasFile('files')){
+             foreach ($files as $file){
+                 $fileName = Str::slug($file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+                 if(Storage::putFileAs('/public/',$file, $fileName)){
+                     File::create([
+                         'name' => $fileName
+                     ]);
+                 }   
+             }
+             return "Si hay archivos";
+         }else{
+             return "No se han subido archivos";
+         }         
+         // Alert::success('Exito', 'Se a subido el archivo');
     }
 
-     /**
-      * Display the specified resource.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
-     public function show($id)
-     {
-         //
-     }
-    	/**
-     * Show the form for editing the specified resource.
-      *
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
-     public function edit($id)
-     {
-         //
-     }
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    public function show($id)
+    {
+        //
+    }
 
-     /**
-      * Update the specified resource in storage.
-      *
-     * @param  \Illuminate\Http\Request  $request
-      * @param  int  $id
-      * @return \Illuminate\Http\Response
-      */
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
     public function update(Request $request, $id)
     {
-         //
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-      * @param  int  $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
-      */
+     */
     public function destroy($id)
     {
         $file = File::whereId($id)->firstOrFail();

@@ -19,7 +19,10 @@
     </div>
     <div class = "mb-3">
         <label for="" class = "form-label">Rol</label>
-        <input id = "rol" name = "rol"  type="text" class ="form-control" value ="{{$user->rol}}">
+        <select class="form-control" id="rol" name="rol" type="text">                           
+            <option>Administrador</option>
+            <option >Usuario</option>
+          </select>  
     </div>
     <div class = "mb-3">
         <label for="" class = "form-label">Contraseña</label>

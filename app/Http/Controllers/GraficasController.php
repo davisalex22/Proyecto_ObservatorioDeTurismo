@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-
-class UserController extends Controller
+use Illuminate\Support\Facades\DB;
+class GraficasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +12,18 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {      
-        $users = User::all();        
-        return view('admin.User')->with('users',$users);
+    {
+        //
+    }
+
+    public function all(Request $request)
+    {
+        $historial = DB::table('historial')
+            ->select('historial.*')
+            ->orderBy('idHistorial','DESC')
+            ->get();          
+
+        return response(json_encode($historial),200)->header('Content-type','text/plain');
     }
 
     /**
@@ -25,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        //
     }
 
     /**
@@ -36,14 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $users = new User();
-        $users -> id = $request -> get('id');
-        $users -> name = $request -> get('nombre');
-        $users -> email = $request -> get('correo');
-        $users -> rol = $request -> get('rol');
-        $users -> password = bcrypt($request -> get('password'));
-        $users -> save();
-        return redirect('/admin/users');
+        //
     }
 
     /**
@@ -65,8 +66,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);      
-        return view('admin.edit')->with('user',$user);
+        //
     }
 
     /**
@@ -77,14 +77,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {         
-        $user = User::find($id);      
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->rol = $request->get('rol');
-        $user->save();
-        return redirect('/admin/users');
-
+    {
+        //
     }
 
     /**
@@ -95,8 +89,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id); 
-        $user->delete();
-        return redirect('/admin/users');
+        //
     }
 }

@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Internas\InternasController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +26,4 @@ Route::get('/contactos',[InternasController::class,'contactos']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-
 

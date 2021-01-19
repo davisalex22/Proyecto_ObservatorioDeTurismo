@@ -1,6 +1,10 @@
 @extends('layouts.interna')
+@section('header')
 
+
+@stop
 @section('contenido')
+
     <section>
         <div class="container-fluid">
             <div class="row">
@@ -25,10 +29,10 @@
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4">
-                                   
+
                                 </div>
                                 <div class="col-6 col-md-4">
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -37,82 +41,66 @@
             </div>
         </div>
     </section>
+    <section id="about">
+        <div class="container">
+
+            <header class="section-header">
+                <h3>Indicadores de alojamiento Loja</h3>
+                <p>Boletín estadístico de indicadores de alojamiento correspondiente al mes de octubre 2019.
+
+                    Se denota un decrecimiento en porcentaje de ocupación y en tarifa promedio, con respecto al mes
+                    anterior, en los establecimientos de las diferentes categorías. Esto, debido al estancamiento que se
+                    produjo durante los días de manifestaciones realizadas en este mes, tal y como se puede observar en la
+                    gráfica de ocupación diaria. </p>
+
+            </header>
+
+        </div>
+    </section><!-- #about -->
     <section>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">                          
+                        <div class="card-header">
                             <h3 class="card-title"><label>Huéspedes</label></h3>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-success">
-                                        <span class="info-box-icon"><i class="far fa-calendar-check"></i></span>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <span class="info-box-icon"><i class="far fa-star"></i>5</span>
+                                    <input type="text" class="knob" value="44" data-width="120" data-height="120"
+                                        data-fgColor="#ff851b">
 
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Total de Checkins</span>
-                                            <span class="info-box-number">41,410</span>
-
-                                            <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
-                                            </div>
-                                            <span class="progress-description">
-                                                70% Increase in 30 Days
-                                            </span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
+                                    <div class="knob-label">data-width="120"</div>
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-danger">
-                                        <span class="info-box-icon"><i class="far fa-calendar-times"></i></span>
+                                <div class="col">
+                                    <span class="info-box-icon"><i class="far fa-star"></i>4</span>
+                                    <input type="text" class="knob" value="16" data-width="120" data-height="120"
+                                        data-fgColor="#d81b60">
 
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Total de Checkots</span>
-                                            <span class="info-box-number">41,410</span>
-
-                                            <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
-                                            </div>
-                                            <span class="progress-description">
-                                                70% Increase in 30 Days
-                                            </span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
+                                    <div class="knob-label">data-width="120"</div>
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-warning">
-                                        <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+                                <div class="col">
+                                    <span class="info-box-icon"><i class="far fa-star"></i>3</span>
+                                    <input type="text" class="knob" value="20" data-width="120" data-height="120"
+                                        data-fgColor="#ffc107">
 
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Ventas Netas</span>
-                                            <span class="info-box-number">41,410</span>
-
-                                            <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
-                                            </div>
-                                            <span class="progress-description">
-                                                70% Increase in 30 Days
-                                            </span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
+                                    <div class="knob-label">data-width="120"</div>
                                 </div>
-                                <!-- /.col -->
+                                <div class="col">
+                                    <span class="info-box-icon"><i class="far fa-star"></i>2</span>
+                                    <input type="text" class="knob" value="35" data-width="120" data-height="120"
+                                        data-fgColor="#3d9970">
+
+                                    <div class="knob-label">data-width="120"</div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <section>
         <div class="container-fluid">
@@ -120,7 +108,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Tarifa Promedio</h3>
+                            <h3 class="card-title"><label>Tarifa Promedio</label></h3>
                         </div>
                         <div class="card-body">
                             <div class="card">
@@ -128,67 +116,73 @@
                                     <h3 class="card-title">Por Habitación</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3 col-sm-6 col-12">
-                                            <div class="info-box bg-success">
-                                                <span class="info-box-icon"><i class="far fa-calendar-check"></i></span>
-
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="info-box bg-orange">
+                                                <span class="info-box-icon"><i class="far fa-star"></i>5</span>
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Total de Checkins</span>
                                                     <span class="info-box-number">41,410</span>
-
                                                     <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%"></div>
+                                                        <div class="progress-bar" style="width: 100%"></div>
                                                     </div>
                                                     <span class="progress-description">
                                                         70% Increase in 30 Days
                                                     </span>
                                                 </div>
-                                                <!-- /.info-box-content -->
                                             </div>
-                                            <!-- /.info-box -->
                                         </div>
-                                        <!-- /.col -->
-                                        <div class="col-md-3 col-sm-6 col-12">
-                                            <div class="info-box bg-danger">
-                                                <span class="info-box-icon"><i class="far fa-calendar-times"></i></span>
+                                        <div class="col">
+                                            <div class="info-box bg-maroon">
+                                                <span class="info-box-icon"><i class="far fa-star"></i>4</span>
 
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Total de Checkots</span>
                                                     <span class="info-box-number">41,410</span>
 
                                                     <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%"></div>
+                                                        <div class="progress-bar" style="width: 100%"></div>
                                                     </div>
                                                     <span class="progress-description">
                                                         70% Increase in 30 Days
                                                     </span>
                                                 </div>
-                                                <!-- /.info-box-content -->
                                             </div>
-                                            <!-- /.info-box -->
                                         </div>
-                                        <!-- /.col -->
-                                        <div class="col-md-3 col-sm-6 col-12">
+                                        <div class="col">
                                             <div class="info-box bg-warning">
-                                                <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+                                                <span class="info-box-icon"><i class="far fa-star"></i>3</span>
 
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Ventas Netas</span>
                                                     <span class="info-box-number">41,410</span>
 
                                                     <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%"></div>
+                                                        <div class="progress-bar" style="width: 100%"></div>
                                                     </div>
                                                     <span class="progress-description">
                                                         70% Increase in 30 Days
                                                     </span>
                                                 </div>
-                                                <!-- /.info-box-content -->
                                             </div>
-                                            <!-- /.info-box -->
                                         </div>
-                                        <!-- /.col -->
+                                        <div class="col">
+                                            <div class="info-box bg-olive">
+                                                <span class="info-box-icon"><i class="far fa-star"></i>2</span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Total de Checkots</span>
+                                                    <span class="info-box-number">41,410</span>
+
+                                                    <div class="progress">
+                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                    </div>
+                                                    <span class="progress-description">
+                                                        70% Increase in 30 Days
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -198,67 +192,73 @@
                                     <h3 class="card-title">Por Persona</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3 col-sm-6 col-12">
-                                            <div class="info-box bg-success">
-                                                <span class="info-box-icon"><i class="far fa-calendar-check"></i></span>
-
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div class="info-box bg-orange">
+                                                <span class="info-box-icon"><i class="far fa-star"></i>5</span>
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Total de Checkins</span>
                                                     <span class="info-box-number">41,410</span>
-
                                                     <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%"></div>
+                                                        <div class="progress-bar" style="width: 100%"></div>
                                                     </div>
                                                     <span class="progress-description">
                                                         70% Increase in 30 Days
                                                     </span>
                                                 </div>
-                                                <!-- /.info-box-content -->
                                             </div>
-                                            <!-- /.info-box -->
                                         </div>
-                                        <!-- /.col -->
-                                        <div class="col-md-3 col-sm-6 col-12">
-                                            <div class="info-box bg-danger">
-                                                <span class="info-box-icon"><i class="far fa-calendar-times"></i></span>
+                                        <div class="col">
+                                            <div class="info-box bg-maroon">
+                                                <span class="info-box-icon"><i class="far fa-star"></i>4</span>
 
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Total de Checkots</span>
                                                     <span class="info-box-number">41,410</span>
 
                                                     <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%"></div>
+                                                        <div class="progress-bar" style="width: 100%"></div>
                                                     </div>
                                                     <span class="progress-description">
                                                         70% Increase in 30 Days
                                                     </span>
                                                 </div>
-                                                <!-- /.info-box-content -->
                                             </div>
-                                            <!-- /.info-box -->
                                         </div>
-                                        <!-- /.col -->
-                                        <div class="col-md-3 col-sm-6 col-12">
+                                        <div class="col">
                                             <div class="info-box bg-warning">
-                                                <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+                                                <span class="info-box-icon"><i class="far fa-star"></i>3</span>
 
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">Ventas Netas</span>
                                                     <span class="info-box-number">41,410</span>
 
                                                     <div class="progress">
-                                                        <div class="progress-bar" style="width: 70%"></div>
+                                                        <div class="progress-bar" style="width: 100%"></div>
                                                     </div>
                                                     <span class="progress-description">
                                                         70% Increase in 30 Days
                                                     </span>
                                                 </div>
-                                                <!-- /.info-box-content -->
                                             </div>
-                                            <!-- /.info-box -->
                                         </div>
-                                        <!-- /.col -->
+                                        <div class="col">
+                                            <div class="info-box bg-olive">
+                                                <span class="info-box-icon"><i class="far fa-star"></i>2</span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Total de Checkots</span>
+                                                    <span class="info-box-number">41,410</span>
+
+                                                    <div class="progress">
+                                                        <div class="progress-bar" style="width: 100%"></div>
+                                                    </div>
+                                                    <span class="progress-description">
+                                                        70% Increase in 30 Days
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -275,70 +275,77 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Ocupación</h3>
+                            <h3 class="card-title"><label>Ocupación</label></h3>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-success">
-                                        <span class="info-box-icon"><i class="far fa-calendar-check"></i></span>
-
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="info-box bg-orange">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>5</span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total de Checkins</span>
                                             <span class="info-box-number">41,410</span>
-
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-danger">
-                                        <span class="info-box-icon"><i class="far fa-calendar-times"></i></span>
+                                <div class="col">
+                                    <div class="info-box bg-maroon">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>4</span>
 
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total de Checkots</span>
                                             <span class="info-box-number">41,410</span>
 
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
+                                <div class="col">
                                     <div class="info-box bg-warning">
-                                        <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+                                        <span class="info-box-icon"><i class="far fa-star"></i>3</span>
 
                                         <div class="info-box-content">
                                             <span class="info-box-text">Ventas Netas</span>
                                             <span class="info-box-number">41,410</span>
 
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
+                                <div class="col">
+                                    <div class="info-box bg-olive">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>4</span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total de Checkots</span>
+                                            <span class="info-box-number">41,410</span>
+
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 100%"></div>
+                                            </div>
+                                            <span class="progress-description">
+                                                70% Increase in 30 Days
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div id="line-chart" style="height: 300px;"></div>
                         </div>
@@ -354,71 +361,77 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">RevPar</h3>
+                            <h3 class="card-title"><label>RevPar</label></h3>
                         </div>
                         <div class="card-body">
-                            
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-success">
-                                        <span class="info-box-icon"><i class="far fa-calendar-check"></i></span>
-
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="info-box bg-orange">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>5</span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total de Checkins</span>
                                             <span class="info-box-number">41,410</span>
-
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-danger">
-                                        <span class="info-box-icon"><i class="far fa-calendar-times"></i></span>
+                                <div class="col">
+                                    <div class="info-box bg-maroon">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>4</span>
 
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total de Checkots</span>
                                             <span class="info-box-number">41,410</span>
 
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
+                                <div class="col">
                                     <div class="info-box bg-warning">
-                                        <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+                                        <span class="info-box-icon"><i class="far fa-star"></i>3</span>
 
                                         <div class="info-box-content">
                                             <span class="info-box-text">Ventas Netas</span>
                                             <span class="info-box-number">41,410</span>
 
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
+                                <div class="col">
+                                    <div class="info-box bg-olive">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>4</span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total de Checkots</span>
+                                            <span class="info-box-number">41,410</span>
+
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 100%"></div>
+                                            </div>
+                                            <span class="progress-description">
+                                                70% Increase in 30 Days
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -433,71 +446,77 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Estadía Promedio</h3>
+                            <h3 class="card-title"><label>Estadía Promedio</label></h3>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-success">
-                                        <span class="info-box-icon"><i class="far fa-calendar-check"></i></span>
-
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="info-box bg-orange">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>5</span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total de Checkins</span>
                                             <span class="info-box-number">41,410</span>
-
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
-                                    <div class="info-box bg-danger">
-                                        <span class="info-box-icon"><i class="far fa-calendar-times"></i></span>
+                                <div class="col">
+                                    <div class="info-box bg-maroon">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>4</span>
 
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total de Checkots</span>
                                             <span class="info-box-number">41,410</span>
 
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-3 col-sm-6 col-12">
+                                <div class="col">
                                     <div class="info-box bg-warning">
-                                        <span class="info-box-icon"><i class="fas fa-dollar-sign"></i></span>
+                                        <span class="info-box-icon"><i class="far fa-star"></i>3</span>
 
                                         <div class="info-box-content">
                                             <span class="info-box-text">Ventas Netas</span>
                                             <span class="info-box-number">41,410</span>
 
                                             <div class="progress">
-                                                <div class="progress-bar" style="width: 70%"></div>
+                                                <div class="progress-bar" style="width: 100%"></div>
                                             </div>
                                             <span class="progress-description">
                                                 70% Increase in 30 Days
                                             </span>
                                         </div>
-                                        <!-- /.info-box-content -->
                                     </div>
-                                    <!-- /.info-box -->
                                 </div>
-                                <!-- /.col -->
-                              
+                                <div class="col">
+                                    <div class="info-box bg-olive">
+                                        <span class="info-box-icon"><i class="far fa-star"></i>4</span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total de Checkots</span>
+                                            <span class="info-box-number">41,410</span>
+
+                                            <div class="progress">
+                                                <div class="progress-bar" style="width: 100%"></div>
+                                            </div>
+                                            <span class="progress-description">
+                                                70% Increase in 30 Days
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

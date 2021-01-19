@@ -24,32 +24,8 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="container-fluid">
-            <div id="logo" class="logo">
-                <!--<h1><a href="#intro" class="scrollto">Observatorio de Turismo</a></h1>-->
-            </div>
-            <h5 class="titlelogo">Observatorio de Turismo<br>Región Sur del Ecuador</h5>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('estadisticas') }}">Estadísticas</a></li>
-                    <li><a href="{{ url('lugares') }}">Lugares Turísticos</a></li>
-                    <li><a href="{{ url('contactos') }}">Contactos</a></li>
-                    @if (Route::has('login'))
-                        @auth
-                            <li><a href="{{ url('admin') }}">Administración</a></li>
-                        @else
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}">Register</a></li>
-                            @endif
-                        @endauth
-                    @endif
-                </ul>
-            </nav>
-        </div>
-    </header>
+  @yield('header')
+   
     @yield('contenido')
     <footer id="footer">
         <div class="footer-top">
@@ -61,7 +37,7 @@
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>Mapa del Sitio</h4>
                         <ul>
-                            <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+                            <li><i class="ion-ios-arrow-right"></i> <a href="{{ url('/') }}">Home</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="#">Estadísticas</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="#">Lugares Turísticos</a></li>
                             <li><i class="ion-ios-arrow-right"></i> <a href="#">Contactos</a></li>
@@ -120,7 +96,84 @@
     <script src="js/main.js"></script>
     <script src="../vendor/adminlte/dist/js/adminlte.min.js"></script>
     <script src="../vendor/flot/jquery.flot.js"></script>
-
+    <script src="../vendor/jquery-knob/jquery.knob.min.js"></script>
+    <script>
+      $(function () {
+        /* jQueryKnob */
+    
+        $('.knob').knob({
+          /*change : function (value) {
+           //console.log("change : " + value);
+           },
+           release : function (value) {
+           console.log("release : " + value);
+           },
+           cancel : function () {
+           console.log("cancel : " + this.value);
+           },*/
+          draw: function () {
+    
+            // "tron" case
+            if (this.$.data('skin') == 'tron') {
+    
+              var a   = this.angle(this.cv)  // Angle
+                ,
+                  sa  = this.startAngle          // Previous start angle
+                ,
+                  sat = this.startAngle         // Start angle
+                ,
+                  ea                            // Previous end angle
+                ,
+                  eat = sat + a                 // End angle
+                ,
+                  r   = true
+    
+              this.g.lineWidth = this.lineWidth
+    
+              this.o.cursor
+              && (sat = eat - 0.3)
+              && (eat = eat + 0.3)
+    
+              if (this.o.displayPrevious) {
+                ea = this.startAngle + this.angle(this.value)
+                this.o.cursor
+                && (sa = ea - 0.3)
+                && (ea = ea + 0.3)
+                this.g.beginPath()
+                this.g.strokeStyle = this.previousColor
+                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false)
+                this.g.stroke()
+              }
+    
+              this.g.beginPath()
+              this.g.strokeStyle = r ? this.o.fgColor : this.fgColor
+              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false)
+              this.g.stroke()
+    
+              this.g.lineWidth = 2
+              this.g.beginPath()
+              this.g.strokeStyle = this.o.fgColor
+              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false)
+              this.g.stroke()
+    
+              return false
+            }
+          }
+        })
+        /* END JQUERY KNOB */
+    
+        //INITIALIZE SPARKLINE CHARTS
+        var sparkline1 = new Sparkline($('#sparkline-1')[0], { width: 240, height: 70, lineColor: '#92c1dc', endColor: '#92c1dc' })
+        var sparkline2 = new Sparkline($('#sparkline-2')[0], { width: 240, height: 70, lineColor: '#f56954', endColor: '#f56954' })
+        var sparkline3 = new Sparkline($('#sparkline-3')[0], { width: 240, height: 70, lineColor: '#3af221', endColor: '#3af221' })
+    
+        sparkline1.draw([1000, 1200, 920, 927, 931, 1027, 819, 930, 1021])
+        sparkline2.draw([515, 519, 520, 522, 652, 810, 370, 627, 319, 630, 921])
+        sparkline3.draw([15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21])
+    
+      })
+    
+    </script>
     <script>
       $(function () {
         /*
