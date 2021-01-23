@@ -131,27 +131,50 @@
                                 <div class="form-group">
                                     <label>Selecciona Hotel</label>
                                     <select class="form-control" id="sel1">
-                                        <option selected>Selecciona un Hotel</option>
-                                        <option>Sonesta Hotel</option>
-                                        <option>Hotel Victoria</option>
-                                        <option>Sonesta Hotel</option>
-                                        <option>Hotel Victoria</option>
+                                        @foreach ($hoteles as $hotel)                                        
+                                        <option>{{ $hotel->nombre_hotel }}</option>                                       
+                                        @endforeach                            
                                      
                                     </select>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="form-group">
-                                    <label>Selecciona Gráfica</label>
-                                    <select class="form-control" id="sel1">
-                                        <option selected>Selecciona Gráfica</option>
-                                        <option>Gráfica de Barras</option>
-                                        <option>Gráfica de Líneas</option>
-                                        <option>Gráfica de Pastel</option>
-                                        <option>Gráfica de Dispersión</option>
+                                    <label>Selecciona Columna</label>
+                                    <select class="form-control" id="selColumn">
+                                        <option selected>Selecciona un Hotel</option>   
+                                        <option>Checkins</option>
+                                        <option>Checkouts</option>
+                                        <option>Pernoctaciones</option>
+                                        <option>Nacionales</option>
+                                        <option>Extranjeros</option>
+                                        <option>Habitaciones Ocupadas</option>
+                                        <option>Habitaciones Disponibles</option>
+                                        <option>Tipo Tarifa</option>
+                                        <option>Tarifa Promedio</option>
+                                        <option>TarPer</option>
+                                        <option>Ventas Netas</option>
+                                        <option>Porcentaje Ocupación</option>
+                                        <option>Revpar</option>
+                                        <option>Empleados Temporales</option>        
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-6 col-md-4">
+                                <div class="form-group">
+                                    <label>Selecciona Gráfica</label>
+                                    <select class="form-control" name="grafica" id="grafica" onchange="generarGrafica();">
+                                        <option value="" disabled selected>Seleccione un Estado...</option>
+                                          <option value="bar">Gráfica de Barras</option>
+                                          <option value="line">Gráfica de Líneas</option>
+                                          <option value="pie">Gráfica de Pastel</option>
+                                          <option value="scatter">Gráfica de Dispersión</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary" onclick="generarGrafica()">Generar Gráfica</button>       
+                                
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -169,7 +192,8 @@
                     </div>                   
                     <div class="card-body">  
                         <div class="row col-12">
-                            <canvas id="myChart" width="400" height="400"></canvas>   
+                          
+                            <canvas id="myChart" width="400" height="300"></canvas>   
                         </div>
                                            
                     </div>
@@ -194,7 +218,7 @@
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
@@ -202,73 +226,13 @@
 <script src="../vendor/inputmask/jquery.inputmask.min.js"></script>
 <script src="../vendor/daterangepicker/daterangepicker.js"></script>
 <script src="../vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="../js/graficas.js"></script>
+
 <script> 
     //Date range picker
       $('#reservation').daterangepicker()    
  </script>
-<script>
-    var graficas =[];
-    var valores=[];
-    $(document).ready(function(){
-        $.ajax({
-            url: '/admin/graficas/all',
-            method: 'POST',
-            data:{
-                id:1,
-                _token: $('input[name="_token"]').val()
-            }
-        }).done(function(res){
-            var arreglo = JSON.parse(res);
-            console.log(arreglo);
-            for(var x=0;x<arreglo.length;x++){           
-                    graficas.push(arreglo[x].fecha);
-                    valores.push(arreglo[x].checkins);
-                    generarGrafica();
-            }
-            
-        });
-        
-    });
-    function generarGrafica(){
-        var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: graficas,
-                    datasets: [{
-                        label: 'Checkins',
-                        data: valores,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            });
-    }
-</script>
+
 <script>
 
     </script>

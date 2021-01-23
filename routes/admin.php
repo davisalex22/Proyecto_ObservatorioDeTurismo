@@ -8,7 +8,6 @@ Route::get('',[AdminController::class,'index']);
 Route::resource('users', 'App\Http\Controllers\UserController');
 Route::get('/archivos',[AdminController::class,'archivos']);
 Route::get('/metricas',[AdminController::class,'metricas']);
-
 Route::get('/editUser',[AdminController::class,'editUser']);
 Route::get('/datosTabla',[AdminController::class,'datosTabla']);
 Route::get('/hoteles',[AdminController::class,'hoteles']);

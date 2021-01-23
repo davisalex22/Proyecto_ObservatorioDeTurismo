@@ -50,7 +50,8 @@ class ArchivoController extends Controller
                      File::create([
                          'name' => $fileName
                      ]);
-                 }   
+                 } 
+                   
         echo '<script language="javascript">alert("Archivo Cargado Correctamente");</script>';  
         $files = File::all();        
         return view('admin.archivos')->with('files',$files);        

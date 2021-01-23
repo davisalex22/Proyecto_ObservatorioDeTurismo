@@ -14,10 +14,10 @@ class HistorialController extends Controller
      */
     public function index()
     {
-        $historiales = Historial::all();        
+        $historiales = Historial::all();       
         return view('admin.datosTabla')->with('historiales',$historiales);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

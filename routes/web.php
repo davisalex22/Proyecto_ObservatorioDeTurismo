@@ -16,11 +16,11 @@ use App\Http\Controllers\Internas\InternasController;
 
 
 Route::get('/',[InternasController::class,'home']);
-Route::get('/estadisticas',[InternasController::class,'estadisticas']);
+// Route::get('/estadisticas',[InternasController::class,'estadisticas']);
 Route::get('/lugares',[InternasController::class,'lugares']);
 Route::get('/contactos',[InternasController::class,'contactos']);
-
-
+// ruta para pasar por el controlador
+Route::get('/estadisticas', 'App\Http\Controllers\CalculosController@index');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
