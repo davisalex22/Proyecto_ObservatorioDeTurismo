@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Historial;
+use App\Models\Hoteles;
 
 class UserController extends Controller
 {
@@ -14,8 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {      
-        $users = User::all();        
-        return view('admin.User')->with('users',$users);
+        $users = User::all(); 
+        $hoteles = Hoteles::all();  
+        return view('admin.User')->with('users',$users)
+                                 ->with('hoteles',$hoteles);
     }
 
     /**
@@ -41,6 +45,7 @@ class UserController extends Controller
         $users -> name = $request -> get('nombre');
         $users -> email = $request -> get('correo');
         $users -> rol = $request -> get('rol');
+        $users -> hotel = $request -> get('hotel');
         $users -> password = bcrypt($request -> get('password'));
         $users -> save();
         return redirect('/admin/users');
@@ -65,7 +70,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);      
+        $user = User::find($id);
+                    
         return view('admin.edit')->with('user',$user);
     }
 
@@ -82,6 +88,7 @@ class UserController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->rol = $request->get('rol');
+        $user->password = bcrypt($request -> get('password'));
         $user->save();
         return redirect('/admin/users');
 

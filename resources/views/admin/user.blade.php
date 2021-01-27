@@ -7,38 +7,40 @@
 @stop
 
 @section('content')
+@if(auth()->user()->rol == 'Administrador')
+<section>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card">                    
                     <div class="card-header">
                         <a href="users/create" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear
                             nuevo usuario</a>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body">                        
                         <table class="table table-striped " id="users" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Rol</th>
+                                    <th scope="col">Hotel</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->rol }}</td>
+                                        <td>{{ $user->hotel }}</td>
                                         <td>
-                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
-                                                <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info">Editar</a>
+                                            <form action="{{ route('users.destroy', $user->id) }}" class="formulario-eliminar" method="POST">
+                                                <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info ">Editar</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Borrar</button>
+                                                <button type="submit" id="formulario-eliminar" class="btn btn-danger">Borrar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -46,13 +48,18 @@
                             </tbody>
                         </table>
                     </div>
+                  
                 </div>
             </div>
         </div>
     </div>
-    </section>
-
-
+</section>
+@else  
+    <div class="alert alert-warning alert-dismissible">        
+        <h5><i class="icon fas fa-exclamation-triangle"></i> Alerta!</h5>
+        No tiene acceso de Administrador
+    </div>
+@endif
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -92,6 +99,16 @@
                                 <option>Administrador</option>
                                 <option>Usuario</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Selecciona un hotel</label>
+                                    <select class="form-control" id="hotel" name="hotel">
+                                        <option disabled selected>Selecciona un Hotel</option>
+                                        <option value="" >Administrador</option>
+                                        @foreach ($hoteles as $hotel)                                        
+                                        <option>{{ $hotel->nombre_hotel }}</option>                                       
+                                        @endforeach   
+                                    </select>
                         </div>
                         <div class="mb-3" id="grupo__password">
                             <label for="password" class="formulario__label">Contraseña</label>
@@ -149,6 +166,30 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+           $('.formulario-eliminar').submit(function(e){
+               e.preventDefault();
+               swal({
+                title: "¿Esta seguro de eliminar este usuario?",
+                text: "El usuario se eliminara definitivamente del sistema",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {                    
+                    swal("Usuario eliminado correctamente", {
+                    icon: "success",
+                    });
+                    this.submit();
+                } else {
+                    swal("El usuario no ha sido eliminado");
+                }
+                });
+           });  
+        </script>
         <script>
             $(document).ready(function() {
                 $('#users').DataTable({
@@ -187,4 +228,4 @@
         <script src="/js/formulario.js"></script>
 
 
-    @stop
+@stop

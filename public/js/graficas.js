@@ -14,10 +14,11 @@
             }
         }).done(function(res){
             var arreglo = JSON.parse(res);
+         
             console.log(arreglo);
             for(var x=0;x<arreglo.length;x++){           
                     graficas.push(arreglo[x].fecha);
-                    valores.push(arreglo[x].checkins);
+                    valores.push(arreglo[x].checkouts);
                     generarGrafica();
             }
             
@@ -28,7 +29,7 @@
 
     function generarGrafica(){
          
-        var tipoGrafica = document.getElementById("grafica").value;
+        var tipoGrafica = document.getElementById("tipoGrafica").value;
         switch (tipoGrafica) {
         case 'bar':
             var ctx = document.getElementById('myChart').getContext('2d');

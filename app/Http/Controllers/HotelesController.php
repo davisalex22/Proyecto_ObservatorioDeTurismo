@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hoteles;
+use Illuminate\Support\Facades\DB;
 class HotelesController extends Controller
 {
     /**
@@ -13,8 +14,15 @@ class HotelesController extends Controller
      */
     public function index()
     {
-        $hoteles = Hoteles::all();        
-        return view('admin.hoteles')->with('hoteles',$hoteles);
+        if (auth()->user()->rol =='Administrador') {
+            $hoteles = Hoteles::all();        
+            return view('admin.hoteles')->with('hoteles',$hoteles);
+        }else{
+            $hotelUser = auth()->user()->hotel;
+            $hoteles = DB::select("SELECT* FROM hotel h WHERE  h.nombre_hotel = '$hotelUser'"); 
+            return view('admin.hoteles')->with('hoteles',$hoteles);
+        } 
+        
     }
 
     /**

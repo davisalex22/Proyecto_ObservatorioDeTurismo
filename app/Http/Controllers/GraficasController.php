@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Hoteles;
 class GraficasController extends Controller
 {
     /**
@@ -13,7 +14,27 @@ class GraficasController extends Controller
      */
     public function index()
     {
-        //
+        $aniosBd = DB::select("SELECT DISTINCT year(fecha) AS years FROM historial");
+        $hoteles = Hoteles::all();       
+        return view('admin.graficas')->with('hoteles',$hoteles)
+                                     ->with('aniosBd',$aniosBd);
+    }
+
+    public function filtroGrafica(Request $request){         
+        $dateInicio = $request -> get('dateInicio');   
+        $dateFin = $request -> get('dateFin');
+        $hotelGrafica = $request -> get('hotelGrafica');
+        $varGrafica = $request -> get('varGrafica');
+        $tipoGrafica = $request -> get('tipoGrafica'); 
+        $varX = DB::select("SELECT nombre_hotel,$varGrafica,fecha FROM historial e, hotel h WHERE e.fecha BETWEEN '$dateInicio' AND '$dateFin' AND e.Hotel_idHotel = h.idHotel AND h.nombre_hotel = '$hotelGrafica'");
+        $varY = DB::select("SELECT  $varGrafica FROM historial e, hotel h WHERE e.fecha BETWEEN '$dateInicio' AND '$dateFin' AND e.Hotel_idHotel = h.idHotel AND h.nombre_hotel = '$hotelGrafica'");            
+        dd($varX);
+        $aniosBd = DB::select("SELECT DISTINCT year(fecha) AS years FROM historial");
+        $hoteles = Hoteles::all();       
+        return view('admin.graficas')->with('hoteles',$hoteles)
+                                     ->with('aniosBd',$aniosBd)
+                                     ->with('varX',$varX);
+
     }
 
     public function all(Request $request)

@@ -3,10 +3,12 @@
 @section('title', 'Carga de Archivos')
 
 @section('content_header')
-    <h1></h1>
+<h1>Carga de Archivos</h1>
 @stop
 
 @section('content')
+@if(auth()->user()->rol == 'Administrador')
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     <section style="padding-top:60px;">
         <div class="container">
             <div class="row">
@@ -20,9 +22,9 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Seleccione un archivo</label>
-                                    <input type="file" name="file" class="form-control" />
+                                    <input type="file" class="form-control" name="files[]" multiple/>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Cargar Archivo</button>
                             </form>
                         </div>
                     </div>
@@ -55,7 +57,7 @@
                                             <td>{{ $file->name }}</td>
                                             <td>{{ $file->created_at }}</td>
                                             <td>
-                                                <form action="{{ route('archivos.destroy', $file->id) }}" method="POST">
+                                                <form action="{{ route('archivos.destroy', $file->id) }}" class="formulario-eliminar" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -72,7 +74,13 @@
                 </div>
             </div>
         </div>
-    </section>   
+    </section>
+@else  
+    <div class="alert alert-warning alert-dismissible">
+        <h5><i class="icon fas fa-exclamation-triangle"></i> Alerta!</h5>
+        No tiene acceso de Administrador
+    </div>
+@endif       
 @stop
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -93,6 +101,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+       $('.formulario-eliminar').submit(function(e){
+           e.preventDefault();
+           swal({
+            title: "¿Esta seguro de eliminar este archivo?",
+            text: "El usuario se eliminara definitivamente del sistema",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {   
+                this.submit();
+            } else {
+                swal("El archivo no ha sido eliminado");
+            }
+            });
+       });  
+    </script>
     <script>
         $(document).ready(function() {
             $('#archivos').DataTable({

@@ -278,27 +278,27 @@ return [
                 ],                
             ],
         ], 
-        [
-            'text'    => 'Edición de Contenido',
-            'icon'    => 'fas fa-edit',
-            'submenu' => [
-                [
-                    'text' => 'Página Principal',
-                    'url'  => '#',
-                    'icon' => 'far fa-file-alt',
-                ],
-                [
-                    'text'    => 'Página de Estadísticas',
-                    'url'     => '#',  
-                    'icon' => 'far fa-file-alt',                  
-                ],
-                [
-                    'text' => 'Página Lugares Turísticos',
-                    'url'  => '#',
-                    'icon' => 'far fa-file-alt',
-                ],
-            ],
-        ], 
+        // [
+        //     'text'    => 'Edición de Contenido',
+        //     'icon'    => 'fas fa-edit',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Página Principal',
+        //             'url'  => '#',
+        //             'icon' => 'far fa-file-alt',
+        //         ],
+        //         [
+        //             'text'    => 'Página de Estadísticas',
+        //             'url'     => '#',  
+        //             'icon' => 'far fa-file-alt',                  
+        //         ],
+        //         [
+        //             'text' => 'Página Lugares Turísticos',
+        //             'url'  => '#',
+        //             'icon' => 'far fa-file-alt',
+        //         ],
+        //     ],
+        // ], 
         
     ],
 

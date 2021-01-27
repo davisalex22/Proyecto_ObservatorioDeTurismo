@@ -9,15 +9,58 @@
 @stop
 
 @section('content')
-    <div class="col-6 col-md-4">
-        <div class="form-group">
-            <select class="form-control" id="sel1">
-                <option selected>Historial</option>
-                <option>Sonesta Hotel</option>
-                <option>Hotel Victoria</option>
-            </select>
+<section>
+    <div class="container-fluid">
+        <div class="col-12">
+            <div class="card">
+                @if(auth()->user()->rol == 'Administrador')
+                <div class="card-header">
+                    <h3 class="card-title">Filtros</h3>
+                </div>
+                @endif  
+                <div class="card-body">                        
+                    <form action="" method = "POST">
+                        @csrf
+                        <div class="row">
+                            @if(auth()->user()->rol == 'Administrador')
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Selecciona un hotel</label>
+                                    <select class="form-control" id="filtroHotel" name="filtroHotel">
+                                        <option disabled selected>Selecciona un Hotel</option>
+                                        @foreach ($hoteles as $hotel)                                        
+                                        <option>{{ $hotel->nombre_hotel }}</option>                                       
+                                        @endforeach   
+                                    </select>
+                                </div>                      
+                            <button class="btn btn-primary">Filtrar</button>     
+                            </div>
+                            <div class="col-8">
+                            @else
+                            <div class="col-12">
+                            @endif    
+                                <div class="card card-widget widget-user">
+                                    <div class="widget-user-header text-white" style="background: #212529">
+                                    @if(auth()->user()->rol == 'Administrador') 
+                                      <h3 class="widget-user-username text-center">{{ $hotelSelect }}</h3>
+                                    @else
+                                      <h3 class="widget-user-username text-center">{{ auth()->user()->hotel }}</h3>
+                                    @endif  
+                                      <h5 class="widget-user-desc text-centert">Datos Generales</h5>
+                                    </div>
+                                    <div class="widget-user-image">
+                                      <img class="img-circle" src="../img/edificio.png" alt="User Avatar">
+                                    </div>
+                                </div>
+                            </div>                          
+                        </div>                                  
+                    </form>    
+                </div>
+            </div>
         </div>
     </div>
+</section>
+    
     <section>
         <div class="container-fluid">
             <div class="row">
@@ -27,10 +70,10 @@
                             <h3 class="card-title">Datos destacados del último mes</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped " id="hoteles" style="width:100%">
+                            <table class="table table-striped table-bordered " id="hoteles" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>idHistorial</th>
+                                        <th>Nombre Hotel</th>
                                         <th>Fecha</th>
                                         <th>Checkins</th>
                                         <th>Checkouts</th>
@@ -48,15 +91,13 @@
                                         <th>Empleados Temporales</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
-                                        <th>Hotel_idHotel</th>
-                                        <th>Created_At</th>
-                                        <th>Updatad_at</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($historiales as $historial)
                                         <tr>
-                                            <td>{{ $historial->idHistorial }}</td>
+                                            <td>{{ $historial->nombre_hotel }}</td>
                                             <td>{{ $historial->fecha }}</td>
                                             <td>{{ $historial->checkins }}</td>
                                             <td>{{ $historial->checkouts }}</td>
@@ -73,10 +114,7 @@
                                             <td>{{ $historial->revpar }}</td>
                                             <td>{{ $historial->empleados_temporales }}</td>
                                             <td>{{ $historial->estado }}</td>
-                                            <td>{{ $historial->opciones }}</td>
-                                            <td>{{ $historial->Hotel_idHotel }}</td>
-                                            <td>{{ $historial->created_at }}</td>
-                                            <td>{{ $historial->update_at }}</td>
+                                            <td>{{ $historial->opciones }}</td>                                          
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -131,7 +169,7 @@
                         "next": "Siguiente",
                         "previous": "Anterior"
                     }
-                },
+                },                
                 dom: 'Blfrtip',
                 "scrollX": true,
                 buttons: [

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\GraficasController;
+use App\Http\Controllers\HistorialController;
 Route::get('',[AdminController::class,'index']);
 Route::resource('users', 'App\Http\Controllers\UserController');
 Route::get('/archivos',[AdminController::class,'archivos']);
@@ -23,6 +24,12 @@ Route::resource('archivos', 'App\Http\Controllers\ArchivoController');
 
 Route::post('archivos',[ArchivoController::class,'import'])->name('archivo.import');
 
-Route::get('/graficas',[AdminController::class,'graficas']);
+Route::resource('graficas', 'App\Http\Controllers\GraficasController');
+
 
 Route::post('/graficas/all',[GraficasController::class,'all']);
+
+
+Route::post('/datosTabla',[HistorialController::class,'filtroHotel']);
+
+Route::post('/graficas',[GraficasController::class,'filtroGrafica']);
