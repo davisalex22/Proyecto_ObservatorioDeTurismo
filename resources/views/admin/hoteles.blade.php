@@ -19,7 +19,6 @@
                             <table class="table table-striped " id="hoteles" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>idHotel</th>
                                         <th>Nombre Hotel</th>
                                         <th>Clasificación</th>
                                         <th>Categoria</th>
@@ -30,7 +29,6 @@
                                 <tbody>
                                     @foreach ($hoteles as $hotel)
                                         <tr>
-                                            <td>{{ $hotel->idHotel }}</td>
                                             <td>{{ $hotel->nombre_hotel }}</td>
                                             <td>{{ $hotel->clasificacion }}</td>
                                             <td>{{ $hotel->categoria }}</td>

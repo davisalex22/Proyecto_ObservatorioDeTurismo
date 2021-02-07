@@ -40,19 +40,23 @@ class ArchivoController extends Controller
     }
  
     public function import(Request $request){
-    
-       Excel::import(new ArchivoImport,$request->file);   
         
-        $file = $request->file('file');
+        $files = $request->file('files');
+        
+        $fecha = new \DateTime();
 
-        $fileName = Str::slug($request->file('file')->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
-                 if(Storage::putFileAs('/public/',$file, $fileName)){
-                     File::create([
-                         'name' => $fileName
-                     ]);
-                 } 
-                   
-        echo '<script language="javascript">alert("Archivo Cargado Correctamente");</script>';  
+        foreach($files as $file){
+            
+            if(Storage::putFileAs('/public/',$file,$fecha->format('d-m-Y').'-'.$file->getClientOriginalName())){
+                File::create([
+                    'name' => $fecha->format('d-m-Y').'-'.$file->getClientOriginalName()
+                ]);
+                Excel::import(new ArchivoImport,$file);
+            }   
+        }
+                       
+        Alert::success('Archivo/s Cargado/s Correctamente');
+
         $files = File::all();        
         return view('admin.archivos')->with('files',$files);        
     }
@@ -63,7 +67,7 @@ class ArchivoController extends Controller
         unlink(public_path('storage' . '/' . $file->name));
         $file->delete();
         
-        echo '<script language="javascript">alert("Archivo Eliminado Correctamente");</script>';
+        Alert::success('Archivo eliminado correctamente');
         $files = File::all();   
         return view('admin.archivos')->with('files',$files);     
     }

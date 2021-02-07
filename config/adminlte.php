@@ -257,11 +257,21 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Configuración de Gráficas',
-            'url'         => 'admin/graficas',
+            'text'    => 'Análisis Estadístico',
             'icon'        => 'fas fa-chart-pie',
-            'label_color' => 'success',
-        ], 
+            'submenu' => [
+                [
+                    'text' => 'Configuración de Gráficas',
+                    'url'  => 'admin/graficas',
+                    'icon' => 'fas fa-chart-bar',
+                ],
+                [
+                    'text'        => 'Comparativa de datos',
+                    'url'         => 'admin/comparativa',
+                    'icon' => 'fas fa-chart-line',                  
+                ],                
+            ],
+        ],         
         [
             'text'    => 'Datos en Tabla',
             'icon'        => 'fas fa-table',
@@ -276,29 +286,35 @@ return [
                     'url'         => 'admin/hoteles',
                     'icon' => 'fas fa-hotel',                  
                 ],                
-            ],
+            ],       
         ], 
         [
-            'text'    => 'Edición de Contenido',
-            'icon'    => 'fas fa-edit',
-            'submenu' => [
-                [
-                    'text' => 'Página Principal',
-                    'url'  => '#',
-                    'icon' => 'far fa-file-alt',
-                ],
-                [
-                    'text'    => 'Página de Estadísticas',
-                    'url'     => '#',  
-                    'icon' => 'far fa-file-alt',                  
-                ],
-                [
-                    'text' => 'Página Lugares Turísticos',
-                    'url'  => '#',
-                    'icon' => 'far fa-file-alt',
-                ],
-            ],
-        ], 
+            'text'        => 'Editor de Contenido',
+            'url'         => 'admin/editContenido',
+            'icon'        => 'far fa-file-alt',     
+            'label_color' => 'success',
+        ],
+        // [
+        //     'text'    => 'Edición de Contenido',
+        //     'icon'    => 'fas fa-edit',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Página Principal',
+        //             'url'  => '#',
+        //             'icon' => 'far fa-file-alt',
+        //         ],
+        //         [
+        //             'text'    => 'Página de Estadísticas',
+        //             'url'     => '#',  
+        //             'icon' => 'far fa-file-alt',                  
+        //         ],
+        //         [
+        //             'text' => 'Página Lugares Turísticos',
+        //             'url'  => '#',
+        //             'icon' => 'far fa-file-alt',
+        //         ],
+        //     ],
+        // ], 
         
     ],
 

@@ -6,23 +6,23 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-xl-11 d-flex align-items-center">
-          <h1 class="logo mr-auto"><a href="index.html">Observatorio de Turismo<br>Región Sur del Ecuador</a></h1>
+          <h1 class="logo mr-auto"><a href="{{ url('/') }}">Observatorio de Turismo<br>Región Sur del Ecuador</a></h1>
          
           <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
           <nav class="nav-menu d-none d-lg-block">
             <ul>
               <li class="menu-active"><a href="{{ url('/') }}">Home</a></li>
-              <li><a href="{{ url('estadisticas') }}">Estadísticas</a></li>
+              <li><a href="{{ url('estadisticas') }}">Indicadores</a></li>
               <li><a href="{{ url('lugares') }}">Lugares Turísticos</a></li>
-              {{-- <li><a href="{{ url('contactos') }}">Contactos</a></li> --}}
+              <li><a href="{{ url('contactos') }}">Estadísticas</a></li>
               @if (Route::has('login'))
                   @auth
                   <li><a href="{{ url('admin') }}">Administración</a></li>
                   @else
-                  <li><a href="{{ route('login') }}">Login</a></li>
+                  <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
                   @if (Route::has('register'))
-                      <li><a href="{{ route('register') }}">Register</a></li>
+                      <li><a href="{{ route('register') }}">Registrar</a></li>
                   @endif
                   @endauth
               @endif
@@ -33,34 +33,10 @@
 
     </div>
   </header>
-    {{-- <header id="header">
-        <div class="container-fluid">
-            <div id="logo" class="logo">
-                <!--<h1><a href="#intro" class="scrollto">Observatorio de Turismo</a></h1>-->
-            </div>
-            <h5 class="titlelogo">Observatorio de Turismo<br>Región Sur del Ecuador</h5>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('estadisticas') }}">Estadísticas</a></li>
-                    <li><a href="{{ url('lugares') }}">Lugares Turísticos</a></li>
-                    <li><a href="{{ url('contactos') }}">Contactos</a></li>
-                    @if (Route::has('login'))
-                        @auth
-                        <li><a href="{{ url('admin') }}">Administración</a></li>
-                        @else
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        @if (Route::has('register'))
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @endif
-                        @endauth
-                    @endif
-                </ul>
-            </nav>
-        </div>
-    </header> --}}
+   
 @stop
 @section('contenido')
+
     <!-- ======= Intro Section ======= -->
     <section id="intro">
         <div class="intro-container">
@@ -142,8 +118,8 @@
                         universidad. Además, como socios externos de este proyecto se encuentra el Ministerio de Turismo de
                         Ecuador
                         y el Municipio de Loja. </p>
-                    <h3>Gráficos Destacados</h3>
-                    <img src="assets/img/infografia.png" class="img-header" alt="">
+                    {{--  <h3>Gráficos Destacados</h3>
+                    <img src="assets/img/infografia.png" class="img-header" alt="">  --}}
                 </header>
             </div>
         </section>
@@ -180,7 +156,7 @@
                             </figure>
 
                             <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html">Parque San Sebastian</h4>
+                                <h4><a href="portfolio-details.html">Parque San Sebastián</h4>
                                 <p>Loja</p>
                             </div>
                         </div>
@@ -197,7 +173,7 @@
                             </figure>
 
                             <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html">Santuraio El Cisne</a></h4>
+                                <h4><a href="portfolio-details.html">Santuario El Cisne</a></h4>
                                 <p>El Cisne</p>
                             </div>
                         </div>

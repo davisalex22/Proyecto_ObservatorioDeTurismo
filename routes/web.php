@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Internas\InternasController;
-
+use App\Http\Controllers\CalculosController;
+use App\Http\Controllers\HistorialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +28,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
+Route::post('/estadisticas',[CalculosController::class,'filtros']);
+
+// Rutas estadisticas
+
+
+
+Route::get('meses/{id}',[CalculosController::class,'getMesesEs']);

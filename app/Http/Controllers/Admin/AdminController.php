@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Hoteles;
+
 class AdminController extends Controller
 {
     public function index(){
@@ -16,10 +16,7 @@ class AdminController extends Controller
     public function metricas(){
         return view('admin.metricas');
     }
-    public function graficas(){
-        $hoteles = Hoteles::all();       
-        return view('admin.graficas')->with('hoteles',$hoteles);
-    }
+  
     public function editUser(){
         return view('admin.editUser');
     }

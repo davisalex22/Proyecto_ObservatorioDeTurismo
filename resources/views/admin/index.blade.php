@@ -12,7 +12,7 @@
       <!-- Add the bg color to the header using any of the bg-* classes -->
       <div class="widget-user-header text-white" style="background: #212529">
         <h3 class="widget-user-username text-center">{{ auth()->user()->name }}</h3>
-        <h5 class="widget-user-desc text-centert">Administrador Master</h5>
+        <h5 class="widget-user-desc text-centert">Usted es {{ auth()->user()->rol }}</h5>
       </div>
       <div class="widget-user-image">
         <img class="img-circle" src="img/userDefault.png" alt="User Avatar">
